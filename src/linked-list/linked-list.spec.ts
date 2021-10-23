@@ -14,3 +14,13 @@ test('should be able to get a node', () => {
 
   expect(linkedList.getNode(2)[0].value).toBe(2);
 });
+
+// test('should be able to remove a node', () => {
+//   linkedList.addNode(1);
+//   linkedList.addNode(2);
+//   linkedList.addNode(3);
+
+//   linkedList.removeNode(linkedList.getNode(2)[0]);
+//   console.log(linkedList.getNode(2)[0].value);
+//   expect(linkedList.getNode(2)[0].value).toBe(null);
+// });

@@ -1,8 +1,8 @@
 # Data Structures in Typescript 
 
-Library of all the data structures implemented in Typescript
+Library of **data structures** implemented in Typescript
 
-## To run the project
+## To test the project
 
 - `yarn install`
 - `yarn test`

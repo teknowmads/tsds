@@ -1,4 +1,4 @@
 export enum NodePosition {
-  BEFORE,
-  AFTER,
+    BEFORE,
+    AFTER,
 }

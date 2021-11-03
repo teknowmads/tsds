@@ -79,4 +79,69 @@ export default class Graph {
     showGraphNodes() {
         console.log('Graph: ', this.graph);
     }
+
+    // graph data
+    /**
+     * 0 -   1  -    2
+     * |    /  \      \
+     * 3 - 5-   4  -  6
+     *
+     * {
+     *  0: [1, 3],
+     *  1: [0, 2, 4, 5],
+     *  3: [0, 5],
+     *  2: [1, 6,]
+     *  5: [1, 3, 4],
+     *  4: [1, 5, 6],
+     *  6: [2, 4]
+     * }
+     */
+
+    bfs(start) {
+        let queue = [];
+        let result = [];
+        queue.push(start);
+        while (queue.length > 0) {
+            let node = queue.shift();
+            this.graph[node].map(item => {
+                if (!queue.includes(item) && !result.includes(item))
+                    queue.push(item);
+            });
+            result.push(node);
+        }
+        console.log('bfs result: ', result);
+    }
+
+    // graph data
+    /**
+     * 0 -   1       2
+     * |    /  \      \
+     * 3 - 5-   4  -  6
+     *
+     * {
+     *  0: [1, 3],
+     *  1: [0, 4, 5],
+     *  3: [0, 5],
+     *  2: [6]
+     *  5: [1, 3, 4],
+     *  4: [1, 5, 6],
+     *  6: [2, 4]
+     * }
+     */
+
+    dfs(start) {
+        let stack = [];
+        let result = [];
+        stack.push(start);
+        while (stack.length > 0) {
+            let node = stack.pop();
+            this.graph[node].map(item => {
+                if (!stack.includes(item) && !result.includes(item)) {
+                    stack.push(item);
+                }
+            });
+            result.push(node);
+        }
+        console.log('dfs result: ', result);
+    }
 }

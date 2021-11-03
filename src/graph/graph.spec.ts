@@ -52,3 +52,38 @@ test('should be able to delete the edge', () => {
     expect(graph.graph[1].length).toBe(1);
     expect(graph.graph[3].length).toBe(0);
 });
+
+test('Breadth-First search traversal', () => {
+    for (let i = 0; i <= 6; i++) {
+        graph.addNode(i);
+    }
+
+    graph.addEdge(0, 1);
+    graph.addEdge(0, 3);
+    graph.addEdge(1, 2);
+    graph.addEdge(1, 4);
+    graph.addEdge(1, 5);
+    graph.addEdge(2, 6);
+    graph.addEdge(3, 5);
+    graph.addEdge(4, 5);
+    graph.addEdge(4, 6);
+
+    graph.bfs(0);
+});
+
+test('Depth-First search traversal', () => {
+    for (let i = 0; i <= 6; i++) {
+        graph.addNode(i);
+    }
+
+    graph.addEdge(0, 1);
+    graph.addEdge(0, 3);
+    graph.addEdge(1, 4);
+    graph.addEdge(1, 5);
+    graph.addEdge(2, 6);
+    graph.addEdge(3, 5);
+    graph.addEdge(4, 5);
+    graph.addEdge(4, 6);
+
+    graph.dfs(0);
+});

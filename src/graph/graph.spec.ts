@@ -7,48 +7,48 @@ beforeEach(() => {
 });
 
 test('should be able to add a new node', () => {
-    graph.addNode('Raj');
-    graph.addNode('Madhur');
+    graph.addNode(0);
+    graph.addNode(1);
 
-    expect(graph.graph['Raj'].length).toBe(0);
-    expect(graph.graph['Madhur'].length).toBe(0);
+    expect(graph.graph[0].length).toBe(0);
+    expect(graph.graph[1].length).toBe(0);
 });
 
 test('should be able to add a new edge', () => {
-    graph.addNode('Raj');
-    graph.addNode('Madhur');
-    graph.addNode('John');
+    graph.addNode(0);
+    graph.addNode(1);
+    graph.addNode(3);
 
-    graph.addEdge('Raj', 'Madhur', 'John');
-    graph.addEdge('Madhur', 'John');
+    graph.addEdge(0, 1);
+    graph.addEdge(1, 3);
 
-    expect(graph.graph['Raj'].length).toBe(1);
-    expect(graph.graph['Madhur'].length).toBe(2);
-    expect(graph.graph['John'].length).toBe(1);
+    expect(graph.graph[0].length).toBe(1);
+    expect(graph.graph[1].length).toBe(2);
+    expect(graph.graph[3].length).toBe(1);
 });
 
 test('should be able to delete the node', () => {
-    graph.addNode('Raj');
-    graph.addNode('Madhur');
-    graph.addNode('John');
+    graph.addNode(0);
+    graph.addNode(1);
+    graph.addNode(3);
 
-    graph.addEdge('Raj', 'Madhur', 'John');
-    graph.addEdge('Madhur', 'John');
+    graph.addEdge(0, 1);
+    graph.addEdge(1, 3);
 
-    graph.removeNode('Raj');
-    expect(graph.graph['Raj']).toBe(undefined);
+    graph.removeNode(0);
+    expect(graph.graph[0]).toBe(undefined);
 });
 
 test('should be able to delete the edge', () => {
-    graph.addNode('Raj');
-    graph.addNode('Madhur');
-    graph.addNode('John');
+    graph.addNode(0);
+    graph.addNode(1);
+    graph.addNode(3);
 
-    graph.addEdge('Raj', 'Madhur', 'John');
-    graph.addEdge('Madhur', 'John');
+    graph.addEdge(0, 1);
+    graph.addEdge(1, 3);
 
-    graph.removeEdge('Madhur', 'John');
+    graph.removeEdge(1, 3);
 
-    expect(graph.graph['Madhur'].length).toBe(1);
-    expect(graph.graph['John'].length).toBe(0);
+    expect(graph.graph[1].length).toBe(1);
+    expect(graph.graph[3].length).toBe(0);
 });

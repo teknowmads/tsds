@@ -1,17 +1,17 @@
 // graph data
 /**
- * Raj -   Madhur  -    Ruchit
- * |        /  \         /
- * John -Amit-Akshit -  Don
+ * 0 -   1  -    2
+ * |    /  \      \
+ * 3 - 5-   4  -  6
  *
  * {
- *  Raj: ['Madhur', 'John'],
- *  Madhur: ['Raj', 'Amit', 'Akshit' ],
- *  John: ['Amit'],
- *  Amit: ['John', 'Madhur', 'Akshit']
- *  Akshit: ['Madhur', 'Amit', 'Don'],
- *  Don: ['Akshit', 'Ruchit'],
- *  Ruchit: ['Don']
+ *  0: [1, 3],
+ *  1: [0, 2, 4, 5],
+ *  3: [0, 5],
+ *  2: [1, 6,]
+ *  5: [1, 3, 4],
+ *  4: [1, 5, 6],
+ *  6: [2, 4]
  * }
  */
 

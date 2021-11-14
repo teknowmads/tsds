@@ -1,4 +1,5 @@
 import Graph from './graph';
+import Vertex from './vertex';
 
 let graph;
 
@@ -7,6 +8,17 @@ beforeEach(() => {
 });
 
 test('should be able to add a new node', () => {
+    // const vertex = new Vertex<string>()
+
+    const vertex: Vertex<string> = new Vertex<string>({
+        value: '',
+    });
+
+    graph.addVertex({
+        value: { sampleId: '', sampleValue: 0 },
+        edges: [],
+        types: [],
+    });
     graph.addNode(0);
     graph.addNode(1);
 

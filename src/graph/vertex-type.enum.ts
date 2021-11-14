@@ -1,11 +1,46 @@
 export enum VertexType {
-    ISOLATED = 'degree zero',
-    LEAF = 'degree one',
-    SOURCE = 'indegree zero',
-    SINK = 'outdegree zero',
-    SIMPLICIAL = 'neighbors forming clique',
-    UNIVERSAL = 'adjacent to every other vertex',
-    CUT = 'removal of which would disconnect the remaining graph',
-    LABELED = 'containing distinguishing information',
-    UNLABELED = 'can be substituted by other unlabeled vertex',
+  /**
+   * When degree of vertex is zero
+   */
+  ISOLATED = 'Isolated',
+
+  /**
+   * When degree of vertex is one
+   */
+  LEAF = 'Leaf',
+
+  /**
+   * When in-degree of vertex is zero
+   */
+  SOURCE = 'Source',
+
+  /**
+   * When out-degree of vertex is zero
+   */
+  SINK = 'Sink',
+
+  /**
+   * The vertex whose neighbors form clique
+   */
+  SIMPLICIAL = 'Simplical',
+
+  /**
+   * Then vertex which is adjacent to every other vertex
+   */
+  UNIVERSAL = 'Universal',
+
+  /**
+   * Then vertex, removal of which would disconnect the remaining graph
+   */
+  CUT = 'Cut',
+
+  /**
+   * When vertex contains information which distinguishes from other vertices
+   */
+  LABELED = 'Labeled',
+
+  /**
+   * When a vertex can be substituted by other unlabeled vertex
+   */
+  UNLABELED = 'Unlabled',
 }

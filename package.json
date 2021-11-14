@@ -18,5 +18,8 @@
     "compile": "tsc",
     "test": "jest",
     "test-watch": "jest --watch"
+  },
+  "dependencies": {
+    "uuid": "^8.3.2"
   }
 }

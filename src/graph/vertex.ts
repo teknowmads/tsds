@@ -5,7 +5,7 @@ export default class Vertex<T> {
   private types: VertexType[];
   id: number;
   value: T;
-  edges?: Vertex<T>[];
+  edges?: Map<number, Vertex<T>> = new Map();
 
   constructor(value: T) {
     this.id = uuidv4();

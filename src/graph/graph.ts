@@ -1,3 +1,4 @@
+import { Errors } from '../errors.enum';
 import Vertex from './vertex';
 // graph data
 /**
@@ -26,25 +27,7 @@ export default class Graph<T> {
    */
   addVertex(vertex: Vertex<T>) {
     this.vertices.set(vertex.id, vertex);
-    console.log(this.vertices);
   }
-
-  /**
-   * To Add edge in the graph
-   * @param source
-   * @param destination
-   * @returns
-   */
-
-  // addEdge(source, destination) {
-  //     if (!this.graph[source] || !this.graph[destination]) return false;
-
-  //     if (!this.graph[source].includes(destination))
-  //         this.graph[source].push(destination);
-
-  //     if (!this.graph[destination].includes(source))
-  //         this.graph[destination].push(source);
-  // }
 
   /**
    * To remove a node from graph
@@ -52,92 +35,49 @@ export default class Graph<T> {
    * @returns
    */
   removeVertex(vertex: Vertex<T>) {
+    // Remove the reference of vertex from all the edges where it was a participant
+    for (const [key, value] of vertex.edges) {
+      value.edges.delete(vertex.id);
+    }
+
     this.vertices.delete(vertex.id);
   }
 
-  // /**
-  //  * Remove edge between the nodes in the graph
-  //  * @param source
-  //  * @param destination
-  //  * @returns
-  //  */
-  // removeEdge(source, destination) {
-  //     if (!this.graph[source] || !this.graph[destination]) return false;
+  /**
+   * To Add edge in the graph
+   * @param source starting of the edge
+   * @param destination ending of the edge
+   * @returns
+   */
+  addEdge(source: Vertex<T>, destination: Vertex<T>) {
+    if (source.edges.has(destination.id) && destination.edges.has(source.id)) {
+      throw new Error(Errors.EDGE_EXITS);
+    }
 
-  //     this.graph[source] = this.graph[source].filter(
-  //         item => item !== destination
-  //     );
-  //     this.graph[destination] = this.graph[destination].filter(
-  //         item => item !== source
-  //     );
-  // }
+    source.edges.set(destination.id, destination);
+    destination.edges.set(source.id, source);
+  }
 
-  // showGraphNodes() {
-  //     console.log('Graph: ', this.graph);
-  // }
+  /**
+   * To get the associated vertices identifying the edges of a vertex
+   * @param vertex vertex for which the edges have been requested.
+   * @returns array of vertices
+   */
+  getEdges(vertex: Vertex<T>) {
+    return vertex.edges;
+  }
 
-  // // graph data
-  // /**
-  //  * 0 -   1  -    2
-  //  * |    /  \      \
-  //  * 3 - 5-   4  -  6
-  //  *
-  //  * {
-  //  *  0: [1, 3],
-  //  *  1: [0, 2, 4, 5],
-  //  *  3: [0, 5],
-  //  *  2: [1, 6,]
-  //  *  5: [1, 3, 4],
-  //  *  4: [1, 5, 6],
-  //  *  6: [2, 4]
-  //  * }
-  //  */
+  /**
+   * To remove the edge comprised of two vertices
+   * @param source starting of the edge
+   * @param destination ending of the edge
+   */
+  removeEdge(source: Vertex<T>, destination: Vertex<T>) {
+    if (source.edges.size === 0 || destination.edges.size === 0) {
+      throw new Error(Errors.EDGES_EMPTY);
+    }
 
-  // bfs(start) {
-  //     let queue = [];
-  //     let result = [];
-  //     queue.push(start);
-  //     while (queue.length > 0) {
-  //         let node = queue.shift();
-  //         this.graph[node].map(item => {
-  //             if (!queue.includes(item) && !result.includes(item))
-  //                 queue.push(item);
-  //         });
-  //         result.push(node);
-  //     }
-  //     console.log('bfs result: ', result);
-  // }
-
-  // // graph data
-  // /**
-  //  * 0 -   1       2
-  //  * |    /  \      \
-  //  * 3 - 5-   4  -  6
-  //  *
-  //  * {
-  //  *  0: [1, 3],
-  //  *  1: [0, 4, 5],
-  //  *  3: [0, 5],
-  //  *  2: [6]
-  //  *  5: [1, 3, 4],
-  //  *  4: [1, 5, 6],
-  //  *  6: [2, 4]
-  //  * }
-  //  */
-
-  // dfs(start) {
-  //     let stack = [];
-  //     let result = [];
-  //     stack.push(start);
-  //     while (stack.length > 0) {
-  //         let node = stack.pop();
-  //         this.graph[node].map(item => {
-  //             if (!stack.includes(item) && !result.includes(item)) {
-  //                 stack.push(item);
-  //             }
-  //         });
-  //         result.push(node);
-  //     }
-  //     console.log('dfs result: ', result);
-  // }
+    source.edges.delete(destination.id);
+    destination.edges.delete(source.id);
+  }
 }

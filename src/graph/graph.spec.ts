@@ -1,91 +1,94 @@
+import { Errors } from '../errors.enum';
 import Graph from './graph';
 import Vertex from './vertex';
 
-let graph;
+let graphForNumbers: Graph<number>;
+let graphForText: Graph<string>;
 
 beforeEach(() => {
-  graph = new Graph();
+  graphForNumbers = new Graph<number>();
+  graphForText = new Graph<string>();
 });
 
 test('should be able to add a new vertex', () => {
   const vertex = new Vertex<string>('test');
-  graph.addVertex(vertex);
+  graphForText.addVertex(vertex);
 
-  const vertexvalue = graph.vertices.get(vertex.id).value;
+  const vertexvalue = graphForText.vertices.get(vertex.id).value;
   expect(vertexvalue).toBe('test');
 });
 
-// test('should be able to add a new edge', () => {
-//   graph.addvertex(0);
-//   graph.addvertex(1);
-//   graph.addvertex(3);
-
-//   graph.addEdge(0, 1);
-//   graph.addEdge(1, 3);
-
-//   expect(graph.graph[0].length).toBe(1);
-//   expect(graph.graph[1].length).toBe(2);
-//   expect(graph.graph[3].length).toBe(1);
-// });
-
-test('should be able to delete the vertex', () => {
+test('should be able to add a new edge', () => {
   const vertex1 = new Vertex<number>(1);
   const vertex2 = new Vertex<number>(2);
   const vertex3 = new Vertex<number>(3);
-  graph.addVertex(vertex1);
-  graph.addVertex(vertex2);
-  graph.addVertex(vertex3);
 
-  graph.removeVertex(vertex2);
-  console.log(graph.vertices.get(vertex2.id));
-  expect(graph.vertices.get(vertex2.id)).toBe(undefined);
+  graphForNumbers.addVertex(vertex1);
+  graphForNumbers.addVertex(vertex2);
+  graphForNumbers.addVertex(vertex3);
+
+  graphForNumbers.addEdge(vertex1, vertex2);
+  graphForNumbers.addEdge(vertex2, vertex3);
+  graphForNumbers.addEdge(vertex3, vertex1);
+
+  const edges1 = graphForNumbers.getEdges(vertex1);
+  const edges2 = graphForNumbers.getEdges(vertex2);
+  const edges3 = graphForNumbers.getEdges(vertex3);
+
+  const vertex2FoundInEdge = edges1.has(vertex2.id);
+  const vertex3FoundInEdge = edges2.has(vertex3.id);
+  const vertex1FoundInEdge = edges3.has(vertex1.id);
+
+  expect(vertex2FoundInEdge).toBe(true);
+  expect(vertex3FoundInEdge).toBe(true);
+  expect(vertex1FoundInEdge).toBe(true);
+
+  expect(() => graphForNumbers.addEdge(vertex1, vertex3)).toThrow(Errors.EDGE_EXITS);
 });
 
-// test('should be able to delete the edge', () => {
-//   graph.addvertex(0);
-//   graph.addvertex(1);
-//   graph.addvertex(3);
+test('should be able to remove the vertex', () => {
+  const vertex1 = new Vertex<number>(1);
+  const vertex2 = new Vertex<number>(2);
+  const vertex3 = new Vertex<number>(3);
+  graphForNumbers.addVertex(vertex1);
+  graphForNumbers.addVertex(vertex2);
+  graphForNumbers.addVertex(vertex3);
 
-//   graph.addEdge(0, 1);
-//   graph.addEdge(1, 3);
+  graphForNumbers.addEdge(vertex1, vertex2);
 
-//   graph.removeEdge(1, 3);
+  graphForNumbers.removeVertex(vertex2);
+  expect(graphForNumbers.vertices.get(vertex2.id)).toBe(undefined);
 
-//   expect(graph.graph[1].length).toBe(1);
-//   expect(graph.graph[3].length).toBe(0);
-// });
+  expect(vertex1.edges.has(vertex2.id)).toBe(false);
+});
+test('should be able to remove the references of the vertex from other edges', () => {
+  const vertex1 = new Vertex<number>(1);
+  const vertex2 = new Vertex<number>(2);
+  graphForNumbers.addVertex(vertex1);
+  graphForNumbers.addVertex(vertex2);
+  graphForNumbers.addEdge(vertex1, vertex2);
+  graphForNumbers.removeVertex(vertex2);
 
-// test('Breadth-First search traversal', () => {
-//   for (let i = 0; i <= 6; i++) {
-//     graph.addvertex(i);
-//   }
+  expect(vertex1.edges.has(vertex2.id)).toBe(false);
+});
 
-//   graph.addEdge(0, 1);
-//   graph.addEdge(0, 3);
-//   graph.addEdge(1, 2);
-//   graph.addEdge(1, 4);
-//   graph.addEdge(1, 5);
-//   graph.addEdge(2, 6);
-//   graph.addEdge(3, 5);
-//   graph.addEdge(4, 5);
-//   graph.addEdge(4, 6);
+test('should throw an exception when removing non-existent edge', () => {
+  const vertex1 = new Vertex<number>(1);
+  const vertex2 = new Vertex<number>(2);
+  graphForNumbers.addVertex(vertex1);
+  graphForNumbers.addVertex(vertex2);
+  expect(() => graphForNumbers.removeEdge(vertex1, vertex2)).toThrow(Errors.EDGES_EMPTY);
+});
 
-//   graph.bfs(0);
-// });
+test('should be able to remove an edge', () => {
+  const vertex1 = new Vertex<number>(1);
+  const vertex2 = new Vertex<number>(2);
+  graphForNumbers.addVertex(vertex1);
+  graphForNumbers.addVertex(vertex2);
 
-// test('Depth-First search traversal', () => {
-//   for (let i = 0; i <= 6; i++) {
-//     graph.addvertex(i);
-//   }
+  graphForNumbers.addEdge(vertex1, vertex2);
+  graphForNumbers.removeEdge(vertex1, vertex2);
 
-//   graph.addEdge(0, 1);
-//   graph.addEdge(0, 3);
-//   graph.addEdge(1, 4);
-//   graph.addEdge(1, 5);
-//   graph.addEdge(2, 6);
-//   graph.addEdge(3, 5);
-//   graph.addEdge(4, 5);
-//   graph.addEdge(4, 6);
-
-//   graph.dfs(0);
-// });
+  expect(vertex1.edges.has(vertex2.id)).toBe(false);
+  expect(vertex2.edges.has(vertex1.id)).toBe(false);
+});

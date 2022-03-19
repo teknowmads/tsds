@@ -1,6 +1,5 @@
 import { Errors } from '../errors.enum';
 export default class Stack<T> {
-    length: number;
     store: T[] = [];
 
     /**
@@ -9,7 +8,6 @@ export default class Stack<T> {
      */
     push(item: T) {
         this.store.push(item);
-        this.length = this.store.length;
     }
 
     /**
@@ -17,11 +15,11 @@ export default class Stack<T> {
      * @returns T
      */
     pop(): T {
-        if (this.size() === 0) {
+        if (this.isEmpty) {
             throw new Error(Errors.STACK_EMPTY);
         }
         const topItem = this.peek();
-        this.store.splice(this.length - 1);
+        this.store.splice(this.size - 1);
         return topItem;
     }
 
@@ -30,17 +28,25 @@ export default class Stack<T> {
      * @returns T
      */
     peek(): T {
-        if (this.size() === 0) {
+        if (this.isEmpty) {
             throw new Error(Errors.STACK_EMPTY);
         }
-        return this.store[this.length - 1];
+        return this.store[this.size - 1];
+    }
+
+    /**
+     * Get if the stack is empty or not
+     * @returns bool
+     */
+    get isEmpty() {
+        return this.size === 0;
     }
 
     /**
      * Get the size of stack
      * @returns length
      */
-    size() {
+    get size() {
         return this.store.length;
     }
 }

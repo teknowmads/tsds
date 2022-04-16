@@ -36,7 +36,7 @@ export default class Graph<T> {
    */
   removeVertex(vertex: Vertex<T>) {
     // Remove the reference of vertex from all the edges where it was a participant
-    for (const [key, value] of vertex.edges) {
+    for (const [key, value] of Array.from(vertex.edges)) {
       value.edges.delete(vertex.id);
     }
 

@@ -4,6 +4,18 @@
   "description": "Data Structures in TypeScript",
   "main": "index.ts",
   "author": "Madhur Ahuja",
+  "contributors": [
+    {
+      "name": "Madhur Ahuja",
+      "email": "madhurahuja@outlook.com",
+      "url": "https://www.madhurahuja.com"
+    },
+    {
+      "name": "Rajdeep Ratan",
+      "email": "rajdeepratan@hotmail.com",
+      "url": "https://github.com/rajdeepratan"
+    }
+  ],
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^27.0.2",
@@ -15,7 +27,7 @@
     "typescript": "^4.4.4"
   },
   "scripts": {
-    "compile": "tsc",
+    "build": "npx tsc",
     "test": "jest",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage"

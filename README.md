@@ -19,3 +19,8 @@ Library of **data structures** implemented in Typescript.
 
 ## Library documentation
 - [Documentation](./documentation/index.html)
+
+## Contributors
+- [Madhur Ahuja](https://github.com/madhurahuja)
+- [Rajdeep Ratan](https://github.com/rajdeepratan)
+

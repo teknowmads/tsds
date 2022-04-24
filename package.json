@@ -1,6 +1,6 @@
 {
   "name": "tsds",
-  "version": "1.0.0",
+  "version": "0.1.0-alpha",
   "description": "Data Structures in TypeScript",
   "main": "index.ts",
   "author": "Madhur Ahuja",

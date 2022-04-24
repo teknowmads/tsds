@@ -11,9 +11,6 @@ jobs:
     steps:
       - name: Git checkout
         uses: actions/checkout@v2
-        run: |
-          echo test the checkout action,
-          ls -a
         with:
           submodules: true
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod

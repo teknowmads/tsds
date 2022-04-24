@@ -1,4 +1,4 @@
-name: github pages
+name: generate tsds documentation 
 
 on:
   push:
@@ -20,16 +20,14 @@ jobs:
         with:
           node-version: '16'
 
-      # - name: Build the code & Generate tsds documentation
-      # - run: npm ci
-      # - run: npm run build
-      # - run: npm run docs
+      - name: Build the code & Generate tsds documentation
+        run: npm run docs
 
-      # - name: Deploy
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   if: github.ref == 'refs/heads/main'
-      #   with:
-      #     personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-      #     external_repository: teknowmads/tsdsdocs.github.io
-      #     publish_dir: ./public
-      #     publish_branch: main
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          external_repository: teknowmads/teknowmads.github.io
+          publish_dir: ./documentation
+          publish_branch: main

@@ -1,8 +1,4 @@
-<style>
-#contributors-parent > div{
-    margin-right: 20px;
-}
-</style>
+
 <div><img src="./assets/tsdslogo.png" /></div>
 <br>
 
@@ -26,14 +22,10 @@ Library of **data structures** implemented in Typescript.
 - [Documentation](./documentation/index.html)
 
 ## Contributors
-<div id="contributors-parent" style="display: flex; margin: 20px;">
-<div>
-<img src="./assets/contributor_pics/madhur_avatar.png" width="95"/>
-<p><a href="https://github.com/madhurahuja">Madhur Ahuja</a></p>
-</div>
-<div style="">
-<img src="./assets/contributor_pics/rajdeep_avatar.png" width="95"/>
-<p><a href="https://github.com/rajdeepratan">Rajdeep Ratan</a></p>
-</div>
-</div>
+<!-- |         |            |
+| ------------- |:-------------:|
+ <img src="./assets/contributor_pics/madhur_avatar.png" width="95"/> <br> <a href="https://github.com/madhurahuja">Madhur Ahuja</a>      | <img src="./assets/contributor_pics/rajdeep_avatar.png" width="95"/>  <br> <a href="https://github.com/rajdeepratan">Rajdeep Ratan</a> |  -->
+
+
+
 

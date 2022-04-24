@@ -1,0 +1,36 @@
+name: github pages
+
+on:
+  push:
+    branches:
+      - main  # Set a branch to deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+        run: |
+          echo test the checkout action,
+          ls -a
+        with:
+          submodules: true
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+     
+      - name: Build the code & Generate tsds documentation
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - run: npm ci
+      - run: npm run build
+      - run: npm run docs
+
+      # - name: Deploy
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   if: github.ref == 'refs/heads/main'
+      #   with:
+      #     personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      #     external_repository: teknowmads/tsdsdocs.github.io
+      #     publish_dir: ./public
+      #     publish_branch: main

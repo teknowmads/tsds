@@ -30,7 +30,8 @@
     "build": "npx tsc",
     "test": "jest",
     "test-watch": "jest --watch",
-    "test-coverage": "jest --coverage"
+    "test-coverage": "jest --coverage",
+    "docs": "compodoc -p tsconfig.doc.json -a assets -s"
   },
   "dependencies": {
     "uuid": "^8.3.2"

@@ -33,4 +33,4 @@ jobs:
           personal_token: ${{ secrets.GITHUB_TOKEN }}
           external_repository: teknowmads/teknowmads.github.io
           publish_dir: ./documentation
-          publish_branch: main
+          publish_branch: master

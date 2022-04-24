@@ -1,5 +1,5 @@
 
-<div><img src="./assets/tsdslogo.png" /></div>
+<div><img src="https://teknowmads.github.io/assets/tsdslogo.png" /></div>
 
 [![generate tsds documentation](https://github.com/teknowmads/tsds/actions/workflows/deploy.yml/badge.svg)](https://github.com/teknowmads/tsds/actions/workflows/deploy.yml)
 [![Node.js Package](https://github.com/teknowmads/tsds/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/teknowmads/tsds/actions/workflows/npm-publish.yml)
@@ -26,7 +26,8 @@ Library of **data structures** implemented in Typescript.
 - [Documentation](https://teknowmads.github.io/index.html)
 
 ## Contributors
-| <img src="./assets/contributor_pics/madhur_avatar.png" width="95"/> <br> <a href="https://github.com/madhurahuja">Madhur Ahuja</a>        |  <img src="./assets/contributor_pics/rajdeep_avatar.png" width="95"/>  <br> <a href="https://github.com/rajdeepratan">Rajdeep Ratan</a>          |
+
+| <img src="https://teknowmads.github.io/assets/contributor_pics/madhur_avatar.png" width="95"/> <br> <a href="https://github.com/madhurahuja">Madhur Ahuja</a>        |  <img src="https://teknowmads.github.io/assets/contributor_pics/rajdeep_avatar.png" width="95"/>  <br> <a href="https://github.com/rajdeepratan">Rajdeep Ratan</a>          |
 | ------------- |:------------- |
      
 

@@ -20,7 +20,10 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Build the code & Generate tsds documentation
+      - name: Setup compodoc
+        run: npm i -g @compodoc/compodoc
+
+      - name: Generate tsds documentation
         run: npm run docs
 
       - name: Deploy

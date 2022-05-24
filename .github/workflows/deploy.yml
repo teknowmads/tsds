@@ -31,6 +31,6 @@ jobs:
         if: github.ref == 'refs/heads/main'
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          external_repository: sourceoverte/sourceoverte.github.io
+          external_repository: sourceouverte/sourceouverte.github.io
           publish_dir: ./documentation
           publish_branch: main

@@ -1,9 +1,10 @@
 {
   "name": "typescriptds",
-  "version": "0.1.2-alpha",
+  "version": "0.1.3-alpha",
   "description": "Data Structures in TypeScript",
-  "main": "index.ts",
   "author": "Madhur Ahuja",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "contributors": [
     {
       "name": "Madhur Ahuja",
